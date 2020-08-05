@@ -7,7 +7,7 @@ class MonsterCard extends React.Component {
   render() {
     const monster = this.props.monster;
     return ( 
-      <div className="card">
+      <div className="card" id={monster.slug}>
         <div><h3>{monster.name}</h3><p>CR: {monster.challenge_rating}</p></div>
         <div><img src="placeholder.png" alt="monster-face"/></div>
           <p><em>{monster.size} {monster.type} // {monster.alignment}</em></p>
@@ -17,7 +17,7 @@ class MonsterCard extends React.Component {
           <p>STR: {monster.strength} || DEX: {monster.dexterity} || CON: {monster.constitution}</p>
           <p>WIS: {monster.wisdom} || INT: {monster.intelligence} || CHA: {monster.charisma}</p>
           <hr></hr>
-          <button>⊕</button>
+          <button onClick={this.props.collectMonster}>⊕</button>
       </div>
     )
   }

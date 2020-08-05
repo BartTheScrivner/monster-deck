@@ -31,11 +31,16 @@ class App extends React.Component {
     <div className="App">
       <NavBar />
       <div className="container">
-        <CardList monsters={this.state.monsters} />
-        <MonsterCollection />
+        <CardList monsters={this.state.monsters} collectMonster={this.collectMonster}/>
+        <MonsterCollection collection={this.state.monsterCollection}/>
       </div>
     </div>
     );
+  }
+
+  collectMonster = (e) => {
+    const monster = this.state.monsters.find(monster => monster.slug === e.target.parentElement.id);
+    this.setState({monsterCollection: [...this.state.monsterCollection, monster]})
   }
 }
 

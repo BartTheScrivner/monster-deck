@@ -7,9 +7,8 @@ class CardList extends React.Component {
   }
   render() {
     return (<div className='card-list'>
-      {this.props.monsters.map(monster => <MonsterCard monster={monster} /> )}
+      {this.props.monsters.map(monster => <MonsterCard monster={monster} collectMonster={this.props.collectMonster}/> )}
     </div>)
   }
 }
-
 export default CardList
