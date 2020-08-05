@@ -1,26 +1,42 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import NavBar from './components/NavBar'
+import CardList from './components/CardList'
+import MonsterCollection from './components/MonsterCollection'
 
-function App() {
-  return (
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      monsters: [],
+      monsterCollection: []
+    };
+    this.url = 'https://api.open5e.com/monsters/?limit=100';
+  }
+  
+  componentDidMount() {
+  fetch(this.url)
+    .then(resp => resp.json())
+    .then(data => 
+      this.setState({
+      monsters: data.results
+    }))
+}
+  
+
+  
+  render() {
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+      <div className="container">
+        <CardList monsters={this.state.monsters} />
+        <MonsterCollection />
+      </div>
     </div>
-  );
+    );
+  }
 }
 
 export default App;
